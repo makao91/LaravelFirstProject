@@ -1,19 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{asset('css/app.css')}}">
-        <title>About me</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    </head>
-    <body>
-        @include('inc.navbar')
-        <div class="container">
-             @yield('content')
-        </div>      
-    </body>
+    <title>{{ config('app.name', 'My first Laravel') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/22.0.0/classic/ckeditor.js"></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+    @include('inc.navbar')
+    <div id="app" class="container">
+        <main class="py-4">
+            @include('inc.messages')
+            @yield('content')
+        </main>
+    </div>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>   
+</body>
 </html>
